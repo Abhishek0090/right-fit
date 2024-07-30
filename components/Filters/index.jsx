@@ -12,8 +12,8 @@ export default function Filters() {
         <div className="flex flex-col gap-y-2 cursor-pointer" key={idx}>
           <h3>{title}</h3>
           <span className="font-bold">All</span>
-          {types.map((item) => (
-            <span>{item}</span>
+          {types.map((item, idx) => (
+            <span key={idx}>{item}</span>
           ))}
         </div>
       ))}
