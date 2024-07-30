@@ -1,55 +1,76 @@
-import React, { createContext, useContext, useMemo, useState } from "react";
+"use client";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
-const FilterContext = createContext();
+const CartContext = createContext();
 
-function FilterProvider({ children }) {
-  const [filterData, setFilterData_] = useState({
-    folio_number: "",
-    fund_type: "",
-    scheme_name: "",
-    scheme_code: "",
-    market_value_sort: "",
-    invested_amount_sort: "",
-    details: "",
-    annual_return: "",
-    age_of_fund: "",
-    exit_load: "",
-    risk_level: "",
+function CartProvider({ children }) {
+  const [cartData, setCartData] = useState({
+    cartOpen: false,
+    cartCount: 0,
+    products: [],
   });
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      const savedCartData = localStorage.getItem("cartData");
+      if (savedCartData) {
+        setCartData(JSON.parse(savedCartData));
+      }
+    }
+  }, []);
 
-  const [portFolioFilter, setPortFolioFilter_] = useState({
-    folio_name: "",
-    zero_balance: "N",
-    scheme_name: "",
-    no_current_balance: false,
-    fund_type: [],
-  });
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      localStorage.setItem("cartData", JSON.stringify(cartData));
+    }
+  }, [cartData]);
 
-  const setFilterData = (data) => {
-    setFilterData_(data);
+  const addProductToCart = (product) => {
+    setCartData((prevState) => {
+      const updatedProducts = [...prevState.products, product];
+      return {
+        ...prevState,
+        products: updatedProducts,
+        cartCount: updatedProducts.length,
+      };
+    });
   };
 
-  const setPortFolioFilter = (data) => {
-    setPortFolioFilter_(data);
+  const removeProductFromCart = (productId) => {
+    setCartData((prevState) => {
+      const updatedProducts = prevState.products.filter(
+        (product) => product.id !== productId
+      );
+      return {
+        ...prevState,
+        products: updatedProducts,
+        cartCount: updatedProducts.length,
+      };
+    });
   };
 
-  const contextValue = useMemo(
+  const cartMemoValue = useMemo(
     () => ({
-      filterData,
-      setFilterData,
-      portFolioFilter,
-      setPortFolioFilter,
+      cartData,
+      setCartData,
+      addProductToCart,
+      removeProductFromCart,
     }),
-    [filterData, portFolioFilter]
+    [cartData]
   );
 
   return (
-    <FilterContext.Provider value={contextValue}>
+    <CartContext.Provider value={cartMemoValue}>
       {children}
-    </FilterContext.Provider>
+    </CartContext.Provider>
   );
 }
 
-export const useFilter = () => useContext(FilterContext);
+export const useCart = () => useContext(CartContext);
 
-export default FilterProvider;
+export default CartProvider;

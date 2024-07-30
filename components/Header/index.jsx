@@ -1,4 +1,13 @@
+"use client";
+
+import { useCart } from "@/provider/CartProvider";
+
 export default function Header() {
+  const {
+    cartData: { cartCount, cartOpen, products },
+    setCartData,
+  } = useCart();
+
   return (
     <header className="fixed w-full">
       <div className="mx-auto px-20 py-4 flex justify-between items-center">
@@ -12,10 +21,12 @@ export default function Header() {
           <a href="#" className="text-gray-300 hover:text-gray-900">
             Featured Products
           </a>
-          <button>
+          <button
+            onClick={() => setCartData((prev) => ({ ...prev, cartOpen: true }))}
+          >
             <img src="/images/cart.svg" />
           </button>
-          <span className="text-white">0</span>
+          <span className="text-white">{products.length}</span>
         </nav>
       </div>
     </header>

@@ -15,6 +15,9 @@ module.exports = {
       colors: {
         primaryColor: "#CA4022",
         footerColor: "#1E1E1E",
+        cartColor: "#D9D9D9",
+        textColor: "#5A112B",
+        btnColor: "#3F3737",
       },
     },
   },

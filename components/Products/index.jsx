@@ -6,6 +6,7 @@ import ProductCard from "../ProductCard";
 import { useEffect, useState } from "react";
 import { _get } from "@/lib/apiInstance";
 import Skeleton from "../Skeleton";
+import { useCart } from "@/provider/CartProvider";
 
 const itemsPerPage = 6;
 
@@ -16,6 +17,8 @@ export default function Products() {
   const totalPages = Math.ceil(products?.length / itemsPerPage);
   const startItem = (page - 1) * itemsPerPage;
   const endItem = startItem + itemsPerPage;
+
+  const { addProductToCart } = useCart();
 
   useEffect(() => {
     getData();
@@ -47,7 +50,11 @@ export default function Products() {
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {products?.slice(startItem, endItem).map((product, index) => (
-                <ProductCard key={index} product={product} />
+                <ProductCard
+                  key={index}
+                  product={product}
+                  onClick={() => addProductToCart(product)}
+                />
               ))}
             </div>
             <Pagination
