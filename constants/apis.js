@@ -1,3 +1,5 @@
+import { _get } from "@/lib/apiInstance";
+
 export const getProducts = async () => {
   try {
     const response = await _get("products");

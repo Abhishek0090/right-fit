@@ -16,10 +16,10 @@ export default function Filters() {
     <div className="h-full px-10 py-10 flex flex-col gap-10">
       <h2 className="font-bold text-xl">Filters</h2>
 
-      <div className="flex gap-4 items-center">
+      {/* <div className="flex gap-4 items-center">
         <span className="font-bold">Applied</span>
         <button className="text-start">Cotton X</button>
-      </div>
+      </div> */}
 
       {filterTypes.map(({ title, types }, idx) => (
         <div className="flex flex-col gap-y-2 cursor-pointer" key={idx}>
