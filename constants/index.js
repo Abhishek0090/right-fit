@@ -195,3 +195,20 @@ export const filterTypes = [
 ];
 
 export const defaultProduct = "/images/product.svg";
+
+export const ProductActions = (state, action) => {
+  switch (action.type) {
+    case "SET_PRODUCTS":
+      return { ...state, products: action.payload };
+    case "SET_LOADING":
+      return { ...state, loading: action.payload };
+    case "SET_PAGE":
+      return { ...state, page: action.payload };
+    case "SET_COLORS":
+      return { ...state, colors: action.payload };
+    case "SET_MATERIALS":
+      return { ...state, materials: action.payload };
+    default:
+      return state;
+  }
+};

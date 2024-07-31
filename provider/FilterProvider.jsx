@@ -5,12 +5,24 @@ import React, { createContext, useContext, useMemo, useState } from "react";
 const FilterContext = createContext();
 
 function FilterProvider({ children }) {
-  const [filterData, setFilterData] = useState("");
+  const [filterData, setFilterData] = useState({
+    color: "",
+    material: "",
+  });
+
+  const applyFilter = (type, filterValue) => {
+    setFilterData((prev) => ({ ...prev, [type]: filterValue }));
+  };
+
+  const removeFilter = () => {
+    setFilterData({ color: "", material: "" });
+  };
 
   const filterValue = useMemo(
     () => ({
       filterData,
-      setFilterData,
+      applyFilter,
+      removeFilter,
     }),
     [filterData]
   );

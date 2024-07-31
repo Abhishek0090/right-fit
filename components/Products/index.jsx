@@ -1,25 +1,35 @@
 "use client";
-import Filters from "../Filters";
-import Pagination from "../Pagination";
-import ProductCard from "../ProductCard";
-import { useEffect, useState } from "react";
+
+import { useMemo, useEffect, useReducer } from "react";
 import { _get } from "@/lib/apiInstance";
-import Skeleton from "../Skeleton";
+import Skeleton from "@/components/Skeleton";
 import { useCart } from "@/provider/CartProvider";
 import { getColors, getMaterial, getProducts } from "@/constants/apis";
+import Pagination from "@/components/Pagination";
+import ProductCard from "@/components/ProductCard";
+import Filters from "@/components/Filters";
+import { useFilter } from "@/provider/FilterProvider";
+import { ProductActions } from "@/constants";
 
 const itemsPerPage = 6;
 
+const initialState = {
+  products: [],
+  loading: false,
+  page: 1,
+  colors: [],
+  materials: [],
+};
+ 
 export default function Products() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
+  const { addProductToCart } = useCart();
+  const { filterData } = useFilter();
+
+  const [state, dispatch] = useReducer(ProductActions, initialState);
+  const { products, loading, page, colors, materials } = state;
   const totalPages = Math.ceil(products?.length / itemsPerPage);
   const startItem = (page - 1) * itemsPerPage;
   const endItem = startItem + itemsPerPage;
-  const [colors, setColors] = useState([]);
-  const [materials, setMaterials] = useState([]);
-  const { addProductToCart } = useCart();
 
   useEffect(() => {
     getData();
@@ -27,7 +37,7 @@ export default function Products() {
 
   const getData = async () => {
     try {
-      setLoading(true);
+      dispatch({ type: "SET_LOADING", payload: true });
 
       const productResponse = await getProducts();
       const products = productResponse || [];
@@ -36,8 +46,8 @@ export default function Products() {
         getColors(),
         getMaterial(),
       ]);
-      setColors(colors);
-      setMaterials(materials);
+      dispatch({ type: "SET_COLORS", payload: colors });
+      dispatch({ type: "SET_MATERIALS", payload: materials });
 
       const finalData = products.map((item) => ({
         ...item,
@@ -46,40 +56,68 @@ export default function Products() {
           materials.find(({ id }) => id === item?.materialId)?.name || "NA",
       }));
 
-      setProducts(finalData);
+      dispatch({ type: "SET_PRODUCTS", payload: finalData });
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
-      setLoading(false);
+      dispatch({ type: "SET_LOADING", payload: false });
     }
   };
+
+  const filteredData = useMemo(() => {
+    let filtered = products;
+
+    if (filterData?.color) {
+      filtered = filtered.filter((item) => item.color === filterData.color);
+    }
+
+    if (filterData?.material) {
+      filtered = filtered.filter(
+        (item) => item.material === filterData.material
+      );
+    }
+
+    return filtered;
+  }, [filterData, products]);
+
+  const displayedProducts = filteredData.length ? filteredData : products;
 
   return (
     <div className="flex">
       <div className="w-[20%]">
         <Filters colors={colors} materials={materials} />
       </div>
-      <div className="w-[80%] flex flex-col gap-4 justify-between">
+      <div className="w-[80%] flex flex-col gap-4 pt-8 justify-between">
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <Skeleton />
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {products?.slice(startItem, endItem).map((product, index) => (
-                <ProductCard
-                  key={index}
-                  product={product}
-                  onClick={() => addProductToCart(product)}
+            {displayedProducts.length ? (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {displayedProducts
+                    .slice(startItem, endItem)
+                    .map((product, index) => (
+                      <ProductCard
+                        key={index}
+                        product={product}
+                        onClick={() => addProductToCart(product)}
+                      />
+                    ))}
+                </div>
+                <Pagination
+                  activePage={page}
+                  totalPages={totalPages}
+                  onClick={(value) =>
+                    dispatch({ type: "SET_PAGE", payload: value })
+                  }
                 />
-              ))}
-            </div>
-            <Pagination
-              activePage={page}
-              totalPages={totalPages}
-              onClick={(value) => setPage(value)}
-            />
+              </>
+            ) : (
+              <div className="text-center py-8">No products available.</div>
+            )}
           </>
         )}
       </div>

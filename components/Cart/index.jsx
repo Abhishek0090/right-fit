@@ -15,10 +15,13 @@ export default function Cart() {
       }  p-5`}
     >
       <nav className="flex gap-4 justify-center space-x-4">
-        <a href="#" className="text-gray-800 font-bold hover:text-gray-900">
+        <a href="/" className="text-gray-800 font-bold hover:text-gray-900">
           All Products
         </a>
-        <a href="#" className="text-gray-600 hover:text-gray-900">
+        <a
+          href="/feature-products"
+          className="text-gray-600 hover:text-gray-900"
+        >
           Featured Products
         </a>
         <button
@@ -32,25 +35,29 @@ export default function Cart() {
         <h3>Shopping Cart</h3>
 
         <div className="max-h-[80vh] overflow-y-auto flex flex-col gap-6">
-          {products.map(({ name, color, material, price, id }) => (
-            <div className="flex gap-4" key={id}>
-              <img src="/images/product.svg" className="h-56" />
-              <div className="flex flex-col gap-3">
-                <span>{name}</span>
-                <div className="space-x-4">
-                  <span className="font-semibold">{color}</span>
-                  <span className="font-thin">{material}</span>
+          {products?.length > 0 ? (
+            products.map(({ name, color, material, price, id }) => (
+              <div className="flex gap-4" key={id}>
+                <img src="/images/product.svg" className="h-56" />
+                <div className="flex flex-col gap-3">
+                  <span>{name}</span>
+                  <div className="space-x-4">
+                    <span className="font-semibold">{color}</span>
+                    <span className="font-thin">{material}</span>
+                  </div>
+                  <span className="text-textColor">{`INR ${price}`}</span>
+                  <button
+                    className="text-white px-4 py-2 bg-btnColor"
+                    onClick={() => removeProductFromCart(id)}
+                  >
+                    Remove X
+                  </button>
                 </div>
-                <span className="text-textColor">{`INR ${price}`}</span>
-                <button
-                  className="text-white px-4 py-2 bg-btnColor"
-                  onClick={() => removeProductFromCart(id)}
-                >
-                  Remove X
-                </button>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <div className="text-center">No Product in Cart 🙃</div>
+          )}
         </div>
       </div>
     </div>
