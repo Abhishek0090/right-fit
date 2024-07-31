@@ -4,14 +4,14 @@ import { useCart } from "@/provider/CartProvider";
 
 export default function Header() {
   const {
-    cartData: { cartCount, cartOpen, products },
+    cartData: { products },
     setCartData,
   } = useCart();
 
   return (
-    <header className="fixed w-full">
+    <header className="fixed w-full z-50">
       <div className="mx-auto px-20 py-4 flex justify-between items-center">
-        <a href="#" className="text-lg font-bold gradientText">
+        <a href="/" className="text-lg font-bold gradientText">
           RIGHTFIT.COM
         </a>
         <nav className="flex gap-4  space-x-4">

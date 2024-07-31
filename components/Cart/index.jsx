@@ -32,14 +32,14 @@ export default function Cart() {
         <h3>Shopping Cart</h3>
 
         <div className="max-h-[80vh] overflow-y-auto flex flex-col gap-6">
-          {products.map(({ name, colorId, materialId, price, id }) => (
+          {products.map(({ name, color, material, price, id }) => (
             <div className="flex gap-4" key={id}>
               <img src="/images/product.svg" className="h-56" />
               <div className="flex flex-col gap-3">
                 <span>{name}</span>
                 <div className="space-x-4">
-                  <span className="font-semibold">{colorId}</span>
-                  <span className="font-thin">{materialId}</span>
+                  <span className="font-semibold">{color}</span>
+                  <span className="font-thin">{material}</span>
                 </div>
                 <span className="text-textColor">{`INR ${price}`}</span>
                 <button

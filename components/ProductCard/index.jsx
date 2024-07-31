@@ -1,7 +1,7 @@
 import { defaultProduct } from "@/constants";
 
 export default function ProductCard({
-  product: { image, name, colorId, materialId, price },
+  product: { image, name, color, material, price },
   onClick = () => {},
 }) {
   return (
@@ -22,8 +22,8 @@ export default function ProductCard({
         }}
       />
       <h2 className="text-xl font-normal">{name}</h2>
-      <p className="text-gray-600">
-        {colorId} - {materialId}
+      <p className="text-gray-600 uppercase">
+        {color} - {material}
       </p>
       <p className="text-lg  text-primaryColor">INR: {price}</p>
     </div>

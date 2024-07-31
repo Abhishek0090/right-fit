@@ -1,5 +1,4 @@
 "use client";
-import { products as ProductsData } from "@/constants";
 import Filters from "../Filters";
 import Pagination from "../Pagination";
 import ProductCard from "../ProductCard";
@@ -7,6 +6,7 @@ import { useEffect, useState } from "react";
 import { _get } from "@/lib/apiInstance";
 import Skeleton from "../Skeleton";
 import { useCart } from "@/provider/CartProvider";
+import { getColors, getMaterial, getProducts } from "@/constants/apis";
 
 const itemsPerPage = 6;
 
@@ -17,7 +17,8 @@ export default function Products() {
   const totalPages = Math.ceil(products?.length / itemsPerPage);
   const startItem = (page - 1) * itemsPerPage;
   const endItem = startItem + itemsPerPage;
-
+  const [colors, setColors] = useState([]);
+  const [materials, setMaterials] = useState([]);
   const { addProductToCart } = useCart();
 
   useEffect(() => {
@@ -27,10 +28,27 @@ export default function Products() {
   const getData = async () => {
     try {
       setLoading(true);
-      const response = await _get("products");
-      setProducts(response.products);
+
+      const productResponse = await getProducts();
+      const products = productResponse || [];
+
+      const [colors, materials] = await Promise.all([
+        getColors(),
+        getMaterial(),
+      ]);
+      setColors(colors);
+      setMaterials(materials);
+
+      const finalData = products.map((item) => ({
+        ...item,
+        color: colors.find(({ id }) => id === item?.colorId)?.name || "NA",
+        material:
+          materials.find(({ id }) => id === item?.materialId)?.name || "NA",
+      }));
+
+      setProducts(finalData);
     } catch (error) {
-      throw error;
+      console.error("Error fetching data:", error);
     } finally {
       setLoading(false);
     }
@@ -39,7 +57,7 @@ export default function Products() {
   return (
     <div className="flex">
       <div className="w-[20%]">
-        <Filters />
+        <Filters colors={colors} materials={materials} />
       </div>
       <div className="w-[80%] flex flex-col gap-4 justify-between">
         {loading ? (

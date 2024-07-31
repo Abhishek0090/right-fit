@@ -15,20 +15,20 @@ function CartProvider({ children }) {
     cartCount: 0,
     products: [],
   });
-  useEffect(() => {
-    if (typeof window !== undefined) {
-      const savedCartData = localStorage.getItem("cartData");
-      if (savedCartData) {
-        setCartData(JSON.parse(savedCartData));
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window !== undefined) {
+  //     const savedCartData = localStorage.getItem("cartData");
+  //     if (savedCartData) {
+  //       setCartData(JSON.parse(savedCartData));
+  //     }
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    if (typeof window !== undefined) {
-      localStorage.setItem("cartData", JSON.stringify(cartData));
-    }
-  }, [cartData]);
+  // useEffect(() => {
+  //   if (typeof window !== undefined) {
+  //     localStorage.setItem("cartData", JSON.stringify(cartData));
+  //   }
+  // }, [cartData]);
 
   const addProductToCart = (product) => {
     setCartData((prevState) => {
