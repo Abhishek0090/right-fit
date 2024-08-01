@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="flex justify-between gap-10 mx-6 px-4">
         <div className="flex justify-between items-center gap-20 mx-6 px-4">
           <div className="flex flex-col gap-10">
-            <p className="gradientText text-2xl font-bold">RIGHTFIT.COM</p>
+            <img src="/images/RIGHTFIT.COM.svg" />
             <div className="flex flex-col gap-4">
               {navLinks.map(({ id, title, link }) => (
                 <a href={link} key={id}>

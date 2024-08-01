@@ -3,7 +3,7 @@
 import Pagination from "@/components/Pagination";
 import ProductCard from "@/components/ProductCard";
 import Skeleton from "@/components/Skeleton";
-import { getColors, getMaterial, getProducts } from "@/constants/apis";
+import { getColors, getMaterial, getProducts } from "@/utils/apis";
 import { _get } from "@/lib/apiInstance";
 import { useCart } from "@/provider/CartProvider";
 import { useEffect, useState } from "react";

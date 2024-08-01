@@ -4,12 +4,12 @@ import { useMemo, useEffect, useReducer } from "react";
 import { _get } from "@/lib/apiInstance";
 import Skeleton from "@/components/Skeleton";
 import { useCart } from "@/provider/CartProvider";
-import { getColors, getMaterial, getProducts } from "@/constants/apis";
+import { getColors, getMaterial, getProducts } from "@/utils/apis";
 import Pagination from "@/components/Pagination";
 import ProductCard from "@/components/ProductCard";
 import Filters from "@/components/Filters";
 import { useFilter } from "@/provider/FilterProvider";
-import { ProductActions } from "@/constants";
+import { ProductReducer } from "@/constants";
 
 const itemsPerPage = 6;
 
@@ -20,12 +20,12 @@ const initialState = {
   colors: [],
   materials: [],
 };
- 
+
 export default function Products() {
   const { addProductToCart } = useCart();
   const { filterData } = useFilter();
 
-  const [state, dispatch] = useReducer(ProductActions, initialState);
+  const [state, dispatch] = useReducer(ProductReducer, initialState);
   const { products, loading, page, colors, materials } = state;
   const totalPages = Math.ceil(products?.length / itemsPerPage);
   const startItem = (page - 1) * itemsPerPage;

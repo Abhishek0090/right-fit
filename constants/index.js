@@ -196,17 +196,25 @@ export const filterTypes = [
 
 export const defaultProduct = "/images/product.svg";
 
-export const ProductActions = (state, action) => {
+export const ACTIONS = {
+  products: "SET_PRODUCTS",
+  loading: "SET_LOADING",
+  page: "SET_PAGE",
+  colors: "SET_COLORS",
+  materials: "SET_MATERIALS",
+};
+
+export const ProductReducer = (state, action) => {
   switch (action.type) {
-    case "SET_PRODUCTS":
+    case ACTIONS.products:
       return { ...state, products: action.payload };
-    case "SET_LOADING":
+    case ACTIONS.loading:
       return { ...state, loading: action.payload };
-    case "SET_PAGE":
+    case ACTIONS.page:
       return { ...state, page: action.payload };
-    case "SET_COLORS":
+    case ACTIONS.colors:
       return { ...state, colors: action.payload };
-    case "SET_MATERIALS":
+    case ACTIONS.materials:
       return { ...state, materials: action.payload };
     default:
       return state;

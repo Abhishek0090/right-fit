@@ -25,9 +25,9 @@ export default function Filters({ colors, materials }) {
         <h3 className="font-bold">{"Colors"}</h3>
         <span
           className={`font-bold ${
-            !filterData.color ? "text-blue-600 font-bold" : ""
+            !filterData.color ? "text-black font-bold" : ""
           }`}
-          onClick={() => applyFilter("color", null)}
+          onClick={() => applyFilter("color", "")}
         >
           All
         </span>
@@ -48,9 +48,9 @@ export default function Filters({ colors, materials }) {
         <h3 className="font-bold">{"Materials"}</h3>
         <span
           className={`font-bold ${
-            !filterData.material ? "text-blue-600 font-bold" : ""
+            !filterData.material ? "text-black font-bold" : ""
           } hover:font-bold`}
-          onClick={() => applyFilter("material", null)}
+          onClick={() => applyFilter("material", "")}
         >
           All
         </span>
