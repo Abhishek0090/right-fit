@@ -1,11 +1,11 @@
-import { Inter } from "next/font/google";
+import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import FilterProvider from "@/provider/FilterProvider";
 import CartProvider from "@/provider/CartProvider";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
-const inter = Inter({ subsets: ["latin"] });
+const nuna = Nunito_Sans({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Right Fit",
@@ -15,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={nuna.className}> 
         <CartProvider>
           <FilterProvider>
             <Header />

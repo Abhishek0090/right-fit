@@ -1,5 +1,15 @@
 import { _get } from "@/lib/apiInstance";
 
+export const getFeatureProducts = async () => {
+  try {
+    const response = await _get("featured");
+    return response?.featured || [];
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return [];
+  }
+};
+
 export const getProducts = async () => {
   try {
     const response = await _get("products");

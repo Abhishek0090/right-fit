@@ -6,14 +6,14 @@ export default function Filters({ colors, materials }) {
   const { filterData, applyFilter, removeFilter } = useFilter();
 
   return (
-    <div className="h-full px-10 py-10 flex flex-col gap-10">
-      <h2 className="font-bold text-xl">Filters</h2>
+    <div className="h-full px-4 py-6 flex flex-col gap-6 md:px-10 md:py-10 md:gap-10">
+      <h2 className="font-bold text-lg md:text-xl">Filters</h2>
 
       {(filterData.color || filterData.material) && (
-        <div className="flex gap-4 items-center">
-          <span className="font-bold">Applied filter : </span>
+        <div className="flex flex-col gap-2 items-start md:flex-row md:items-center md:gap-4">
+          <span className="font-bold">Applied filter: </span>
           <button
-            className="text-start font-bold"
+            className="text-start font-bold border border-gray-500 px-1 sm:px-3 py-1 rounded-full md:px-4 md:py-1"
             onClick={() => removeFilter()}
           >
             {filterData.color || filterData.material} X
@@ -21,12 +21,12 @@ export default function Filters({ colors, materials }) {
         </div>
       )}
 
-      <div className="flex flex-col gap-y-2 cursor-pointer">
-        <h3 className="font-bold">{"Colors"}</h3>
+      <div className="flex flex-col gap-y-4 cursor-pointer">
+        <h3 className="font-bold text-base md:text-lg">Colors</h3>
         <span
-          className={`font-bold ${
+          className={`${
             !filterData.color ? "text-black font-bold" : ""
-          }`}
+          } text-sm md:text-base`}
           onClick={() => applyFilter("color", "")}
         >
           All
@@ -36,7 +36,7 @@ export default function Filters({ colors, materials }) {
             key={id}
             className={`${
               filterData.color === name ? "text-blue-600 font-bold" : ""
-            } hover:font-bold`}
+            } hover:font-bold text-sm md:text-base`}
             onClick={() => applyFilter("color", name)}
           >
             {name}
@@ -44,12 +44,12 @@ export default function Filters({ colors, materials }) {
         ))}
       </div>
 
-      <div className="flex flex-col gap-y-2 cursor-pointer">
-        <h3 className="font-bold">{"Materials"}</h3>
+      <div className="flex flex-col gap-y-4 cursor-pointer">
+        <h3 className="font-bold text-base md:text-lg">Materials</h3>
         <span
-          className={`font-bold ${
+          className={`${
             !filterData.material ? "text-black font-bold" : ""
-          } hover:font-bold`}
+          } text-sm md:text-base hover:font-bold`}
           onClick={() => applyFilter("material", "")}
         >
           All
@@ -59,7 +59,7 @@ export default function Filters({ colors, materials }) {
             key={id}
             className={`${
               filterData.material === name ? "text-blue-600 font-bold" : ""
-            } hover:font-bold`}
+            } hover:font-bold text-sm md:text-base`}
             onClick={() => applyFilter("material", name)}
           >
             {name}

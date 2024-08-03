@@ -12,6 +12,7 @@ export default function ProductCard({
       <button className="absolute group-hover:block hidden top-[45%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-bold z-50 ">
         Add to Cart
       </button>
+      {/* NOTE : The images from unsplash is not wokring thats why added default image  */}
       <img
         src={image}
         alt="/images/product.svg"

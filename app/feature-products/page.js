@@ -3,7 +3,12 @@
 import Pagination from "@/components/Pagination";
 import ProductCard from "@/components/ProductCard";
 import Skeleton from "@/components/Skeleton";
-import { getColors, getMaterial, getProducts } from "@/utils/apis";
+import {
+  getColors,
+  getFeatureProducts,
+  getMaterial,
+  getProducts,
+} from "@/utils/apis";
 import { _get } from "@/lib/apiInstance";
 import { useCart } from "@/provider/CartProvider";
 import { useEffect, useState } from "react";
@@ -31,18 +36,20 @@ export default function FeatureProducts() {
       const productResponse = await getProducts();
       const products = productResponse || [];
 
-      const [colors, materials] = await Promise.all([
+      const [featureProducts, colors, materials] = await Promise.all([
+        getFeatureProducts(),
         getColors(),
         getMaterial(),
       ]);
 
-      const tempData = products.map((item) => ({
-        ...item,
-        color: colors.find(({ id }) => id === item?.colorId)?.name || "NA",
-        material:
-          materials.find(({ id }) => id === item?.materialId)?.name || "NA",
-      }));
-
+      const tempData = products
+        ?.filter((item) => featureProducts?.some((ele) => ele.productId === item.id))
+        ?.map((item) => ({
+          ...item,
+          color: colors?.find(({ id }) => id === item.colorId)?.name || "NA",
+          material:
+            materials?.find(({ id }) => id === item.materialId)?.name || "NA",
+        }));
       setProducts(tempData);
     } catch (error) {
       console.error("Error fetching data:", error);
