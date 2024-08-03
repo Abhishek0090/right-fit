@@ -2,11 +2,12 @@
 import { useCart } from "@/provider/CartProvider";
 
 export default function Cart() {
-  const {
-    cartData: { cartCount, cartOpen, products },
-    setCartData,
-    removeProductFromCart,
-  } = useCart();
+const {
+  cartData: { cartCount = 0, cartOpen = false, products = [] } = {},
+  setCartData,
+  removeProductFromCart,
+} = useCart();
+
 
   return (
     <div

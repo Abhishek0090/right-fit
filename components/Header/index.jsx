@@ -6,9 +6,11 @@ import { usePathname } from "next/navigation";
 
 export default function Header() {
   const {
-    cartData: { products },
+    cartData: { products = [] } = {},
     setCartData,
-  } = useCart();
+    removeProductFromCart,
+  } = useCart(); 
+  
   const pathname = usePathname();
 
   const [darkBg, setDarkBg] = useState(false);
