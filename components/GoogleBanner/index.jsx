@@ -1,12 +1,14 @@
-// components/GoogleBannerAd.js
+"use client";
 import { useEffect } from "react";
 
 const GoogleBannerAd = () => {
   useEffect(() => {
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {
-      console.error(e);
+    if (typeof window !== "undefined" && window.adsbygoogle) {
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {
+        console.error("AdSense Error:", e);
+      }
     }
   }, []);
 

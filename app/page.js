@@ -12,10 +12,10 @@ export default function Home() {
         <Hero />
       </div>
       <Products /> */}
+      <h2>Testing the ad app</h2>
       <GoogleBannerAd />
       <br />
       <br />
-      <InterstitialAd />
     </div>
   );
 }
