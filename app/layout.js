@@ -21,19 +21,6 @@ export default function RootLayout({ children }) {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2344013691030339"
           crossOrigin="anonymous"
         />
-
-        <Script
-          id="google-adsense-init"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (adsbygoogle = window.adsbygoogle || []).push({
-                google_ad_client: "ca-pub-2344013691030339",
-                enable_page_level_ads: true
-              });
-            `,
-          }}
-        />
       </head>
       <body>{children}</body>
     </html>
