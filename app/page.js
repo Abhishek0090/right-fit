@@ -10,8 +10,8 @@ export default function Home() {
       <div className="bg-images">
         <Hero />
       </div>
-
-      <div className="h-[200px]">
+      <br />
+      <div className="h-[200px] w-full">
         <GoogleBannerAd />
       </div>
       <Products />
