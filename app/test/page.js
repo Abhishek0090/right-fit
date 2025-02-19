@@ -1,4 +1,4 @@
-import InterstitialAd from "@/components/InterstitialAd";
+import InterstitialAd from "@/components/Intertitial";
 import React from "react";
 
 const TestPaage = () => {
