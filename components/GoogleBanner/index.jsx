@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 const GoogleBannerAd = () => {
   useEffect(() => {
-    console.log("AdSense Component Mounted");
+    console.log("Google AdSense Component Mounted");
     if (typeof window !== "undefined" && window.adsbygoogle) {
       try {
         console.log("Pushing AdSense Ad...");

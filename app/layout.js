@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
         <Script
           strategy="afterInteractive"
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2344013691030339"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
           crossOrigin="anonymous"
         />
       </head>
