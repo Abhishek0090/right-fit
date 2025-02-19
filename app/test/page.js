@@ -1,7 +1,7 @@
 import InterstitialAd from "@/components/InterstitialAd";
 import React from "react";
 
-const TestPage = () => {
+const TestPaage = () => {
   return (
     <div style={{ maxWidth: "800px", margin: "0 auto", padding: "20px", textAlign: "center" }}>
       <h1 style={{ fontSize: "24px", marginBottom: "10px" }}>Welcome to Our Test Page</h1>
@@ -24,4 +24,4 @@ const TestPage = () => {
   );
 };
 
-export default TestPage;
+export default TestPaage
