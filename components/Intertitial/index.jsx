@@ -1,30 +1,27 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const InterstitialAd = () => {
-  const [adLoaded, setAdLoaded] = useState(false);
-
   useEffect(() => {
     if (typeof window !== "undefined" && window.adsbygoogle) {
       try {
-        (window.adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-2344013691030339",
-          enable_page_level_ads: true,
-        });
-        setAdLoaded(true);
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
       } catch (error) {
-        console.error("Interstitial Ad failed to load:", error);
+        console.error("AdSense ad failed to load:", error);
       }
     }
   }, []);
 
   return (
-    <div style={{ textAlign: "center", marginTop: "20px" }}>
-      {adLoaded ? (
-        <p>Advertisement is loading...</p>
-      ) : (
-        <p>Waiting for ad...</p>
-      )}
+    <div style={{ textAlign: "center", margin: "20px 0" }}>
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block", textAlign: "center" }}
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-6035400859853480"
+        data-ad-slot="7667529615"
+      ></ins>
     </div>
   );
 };
