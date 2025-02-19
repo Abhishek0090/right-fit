@@ -13,7 +13,7 @@ export default function Home() {
       </div>
 
       <div className="h-[200px]">
-        <GoogleBannerAd />
+        <InterstitialAd />
       </div>
       <Products />
       <br />
