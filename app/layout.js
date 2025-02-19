@@ -25,12 +25,10 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-          <FilterProvider>
-            <CartProvider>
-          {children}
-           </CartProvider>
-       </FilterProvider>
-            </body>
+        <FilterProvider>
+          <CartProvider>{children}</CartProvider>
+        </FilterProvider>
+      </body>
     </html>
   );
 }
