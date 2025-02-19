@@ -1,6 +1,7 @@
 import Cart from "@/components/Cart";
 import GoogleBannerAd from "@/components/GoogleBanner";
 import Hero from "@/components/Hero";
+import InterstitialAd from "@/components/Intertitial";
 import Products from "@/components/Products";
 
 export default function Home() {
@@ -12,7 +13,7 @@ export default function Home() {
       </div>
 
       <div className="h-[200px]">
-        <GoogleBannerAd />
+        <InterstitialAd />
       </div>
       <Products />
       <br />
