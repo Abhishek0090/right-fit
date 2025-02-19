@@ -1,5 +1,7 @@
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
+import CartProvider from "@/provider/CartProvider";
+import FilterProvider from "@/provider/FilterProvider";
 
 // app/layout.js or app/layout.tsx
 import Script from "next/script";
@@ -22,7 +24,13 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
       </head>
-      <body>{children}</body>
+      <body>
+          <FilterProvider>
+            <CartProvider>
+          {children}
+           </CartProvider>
+       </FilterProvider>
+            </body>
     </html>
   );
 }
