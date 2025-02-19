@@ -7,13 +7,15 @@ import Products from "@/components/Products";
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
-       <Cart />
+      <Cart />
       <div className="bg-images">
         <Hero />
       </div>
-      <Products /> 
-      <h2>Testing the ad app</h2>
-      <GoogleBannerAd />
+
+      <div className="h-[200px]">
+        <GoogleBannerAd />
+      </div>
+      <Products />
       <br />
       <br />
     </div>

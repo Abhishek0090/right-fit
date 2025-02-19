@@ -13,14 +13,14 @@ const InterstitialAd = () => {
   }, []);
 
   return (
-    <div style={{ textAlign: "center", margin: "20px 0" }}>
+    <div>
       <ins
         className="adsbygoogle"
         style={{ display: "block", textAlign: "center" }}
         data-ad-layout="in-article"
         data-ad-format="fluid"
         data-ad-client="ca-pub-6035400859853480"
-        data-ad-slot="7667529615"
+        data-ad-slot="8761690256"
       ></ins>
     </div>
   );
