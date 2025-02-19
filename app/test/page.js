@@ -11,7 +11,7 @@ const TestPaage = () => {
       </p>
 
       {/* Ad Section */}
-      <div style={{ margin: "20px 0", padding: "10px", border: "1px solid #ddd", borderRadius: "8px", background: "#f9f9f9" }}>
+      <div style={{ margin: "20px 0", padding: "10px", border: "1px solid #ddd", borderRadius: "8px", background: "#f9f9f9" }} className="h-full">
         <h2 style={{ fontSize: "20px", marginBottom: "10px" }}>Sponsored Advertisement</h2>
         <InterstitialAd />
       </div>
