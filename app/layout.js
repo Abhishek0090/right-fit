@@ -1,19 +1,21 @@
-import { Nunito_Sans } from "next/font/google";
-import "./globals.css";
+"use client";
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+import Script from "next/script";
 import CartProvider from "@/provider/CartProvider";
 import FilterProvider from "@/provider/FilterProvider";
-
-// app/layout.js or app/layout.tsx
-import Script from "next/script";
-
-const nuna = Nunito_Sans({ subsets: ["latin"] });
-
-export const metadata = {
-  title: "Right Fit",
-  description: "An Ecommerce Website",
-};
+import "./globals.css";
 
 export default function RootLayout({ children }) {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    console.log("Route changed, resetting ads...");
+    if (typeof window !== "undefined" && window.adsbygoogle) {
+      window.adsbygoogle = [];
+    }
+  }, [pathname]); // Runs on route change
+
   return (
     <html lang="en">
       <head>
