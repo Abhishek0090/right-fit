@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       <Cart />
-      <div className="bg-images">
+      <div className="">
         <Hero />
       </div>
       <br />
