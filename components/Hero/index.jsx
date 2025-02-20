@@ -11,7 +11,7 @@ export default function Hero() {
       <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-20">
         <div className="text-center sm:text-left text-white">
           <h1 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold">
-            Latest Styles
+            Ad Demo  
           </h1>
           <p className="text-lg sm:text-2xl lg:text-3xl font-bold mt-4">
             At Yesterday&apos;s Prices
