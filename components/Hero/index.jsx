@@ -22,7 +22,8 @@ export default function Hero() {
               href="/test"
               className="px-6 py-3 bg-primaryColor text-white font-bold text-lg sm:text-xl rounded-xl hover:bg-primaryColor-dark transition-colors"
             >
-              Browse All Styles
+              Continue surfing
+              
             </Link>
           </div>
         </div>
