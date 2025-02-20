@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <main
       className="relative w-full h-screen bg-cover bg-center"
-      style={{ backgroundImage: 'url(/images/hero.png)' }} // Replace with your image path
+      style={{ backgroundImage: 'url(https://www.google.com/gasearch?q=technical%20image%20full%20hd&source=sh/x/gs/m2/5#vhid=aj8FbZmrQwC0-M&vssid=mosaic)' }} // Replace with your image path
     >
       {/* Overlay for better readability */}
       <div className="absolute inset-0 bg-black opacity-50"></div>
