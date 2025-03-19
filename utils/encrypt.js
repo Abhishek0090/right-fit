@@ -4,9 +4,7 @@ export const aes256gcm = () => {
   const BLOCK_SIZE = 12 * 8;
   const TAG_LENGTH = 16 * 8;
 
-  const key =
-    process.env.NEXT_PUBLIC_ENCRYPT_KEY ||
-    "501c2d6f120a2185575e2eb8fdc1a2d28caf759bf9eb73bed2ca94f20899c563";
+  const key = process.env.NEXT_PUBLIC_ENCRYPT_KEY;
   const hashKey = hash.sha256.hash(key);
   const _cipher = new cipher.aes(hashKey);
 
