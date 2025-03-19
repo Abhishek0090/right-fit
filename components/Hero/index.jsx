@@ -1,7 +1,7 @@
 export default function Hero() {
   return (
-    <main className="w-full mx-auto pt-8 h-full sm:h-[80vh]">
-      <div className="text-start sm:text-left px-4 sm:px-20 py-5 sm:py-60 mb-0 sm:mb-8">
+    <main className="w-full mx-auto pt-8 py-20 h-[500px]">
+      <div className="text-start sm:text-left px-4 sm:px-20 py-5 sm:py-0 mb-0 sm:mb-8">
         <h1 className="text-sm sm:text-7xl font-extrabold text-white">
           Latest Styles
         </h1>

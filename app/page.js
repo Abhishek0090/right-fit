@@ -1,4 +1,5 @@
 import Cart from "@/components/Cart";
+import EncryptDecrypt from "@/components/Encrypted";
 import GoogleBannerAd from "@/components/GoogleBanner";
 import Hero from "@/components/Hero";
 import Products from "@/components/Products";
@@ -6,7 +7,8 @@ import Products from "@/components/Products";
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
-      <Cart />
+      <EncryptDecrypt />
+      {/* <Cart />
       <div className="bg-images">
         <Hero />
       </div>
@@ -16,7 +18,7 @@ export default function Home() {
       </div>
       <Products />
       <br />
-      <br />
+      <br /> */}
     </div>
   );
 }
